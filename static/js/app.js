@@ -1,12 +1,14 @@
 // json url
 const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
 
+// console.log(url)
 // initialize function to pull ID numbers
 function init() {
     var dropDown = d3.select("#selDataset");
     // retrieve JSON data
     d3.json(url).then(function (data) {
         var sampleNames = data.names;
+        // console.log(sampleNames)
         sampleNames.forEach((sample) => {
             dropDown.append("option").text(sample).property("value", sample)
         });
@@ -36,6 +38,7 @@ function buildCharts(sample) {
         var metaDataSample = metaData.filter(row => row.id == sample);
         var wash = metaDataSample[0].wfreq;
 
+        // console.log(otuIdsSlice)
     //----------------------------------------------//
     //----------------------------------------------//
                 // Building a bar chart//
@@ -49,7 +52,7 @@ function buildCharts(sample) {
         };
         var data = [trace1];
         Plotly.newPlot("bar", data)
-
+        // console.log(otuIdsSlice.map(item => `OTU ${item}`));
     //---------------------------------------------------------//
     //----------------------------------------------------------//
                 // Building  a bubble chart//
@@ -115,16 +118,7 @@ function buildCharts(sample) {
                 axis: { range: [null, 9] },
                 bar: { color: "red" },
                 steps: [
-                //   { range: [0, 1], color: "rgba(114, 70, 28, 0.9)" },
-                //   { range: [1, 2], color: "rgba(169, 146, 48, 0.9)" },
-                //   { range: [2, 3], color: "rgba(199, 188, 58, 0.9)" },
-                //   { range: [3, 4], color: "rgba(221, 226, 68, 0.9)" },
-                //   { range: [4, 5], color: "rgba(66, 206, 58, 0.9)" },
-                //   { range: [5, 6], color: "rgba(29, 184, 122, 0.9)" },
-                //   { range: [6, 7], color: "rgba(15, 155, 165, 0.9)" },
-                //   { range: [7, 8], color: "rgba(11, 117, 154, 0.9)" },
-                //   { range: [8, 9], color: "rgba(0, 34, 125, 0.9)" },
-                //   { range: [0, 1], color: "red" },
+                
                 { range: [1, 2], color: "orange" },
                 { range: [2, 3], color: "yellow" },
                 { range: [3, 4], color: "beige" },
